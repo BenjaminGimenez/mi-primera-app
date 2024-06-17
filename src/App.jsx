@@ -1,10 +1,12 @@
 import './App.css'
-import CardsGallery from './assets/componets/CardsGallery/CardsGallery';
+import Counter from './assets/componets/Counter/Counter';
+// import CardsGallery from './assets/componets/CardsGallery/CardsGallery';
 
 const App = () => {
   return <>
   <h1>hola mundo</h1>
-  <CardsGallery/>
+  {/* <CardsGallery/> */}
+  <Counter/>
   </>
 };
 export default App;
