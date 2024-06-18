@@ -1,13 +1,7 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body{
-  background-color: #a7a5a5;
-  color: #ffffff;
-  padding: 1rem;
-  min-height: 100vh;
+  background-color: #a7a5a5 !important; 
+  color: #ffffff !important; 
+  padding: 1rem !important; 
+  min-height: 100vh !important; 
 }
 
