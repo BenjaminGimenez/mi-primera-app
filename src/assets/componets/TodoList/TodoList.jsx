@@ -8,8 +8,15 @@ const TodoList = () => {
     const inputRef = useRef();
 
     const handleNewTodo = () =>{
-      console.log('cargando..')
-      console.log(inputRef.current.value)
+  
+      const nuevoTodo = inputRef.current.value
+      if(nuevoTodo.trim()){
+        const nuevoArreglo = [...todos, nuevoTodo]
+      setTodos(nuevoArreglo)
+
+      inputRef.current.value = '';
+      }
+      
     }
   return (
     <section>
