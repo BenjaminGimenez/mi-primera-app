@@ -4,7 +4,7 @@ const RootView = () => {
   return (
     <>
     <header>este es el header</header>
-    <main>
+    <main className="container">
       <Outlet/>
     </main>
     <footer>este es el footer</footer>
