@@ -25,4 +25,4 @@ const ContactsViews = () => {
     </>
   )
 }
-export default ContactsViews
+export default ContactsViews;
