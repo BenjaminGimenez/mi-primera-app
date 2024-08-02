@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import ContactsFormV1 from "../componets/Contacts/Form/ContactsFormV1"
 import ContactsTable from "../componets/Contacts/Table/ContactsTable";
+// import ContactsFormV1 from "../componets/Contacts/Form/ContactsFormV1"
+import ContactsFormV2 from "../componets/Contacts/Form/ContactsFormV2";
 
 // Verificación adicional para asegurarse de que la cadena es un JSON válido
 const contactoLS = localStorage.getItem('contactos');
@@ -18,7 +19,8 @@ const ContactsViews = () => {
     <h1>Cargar contactos</h1>
     <hr />
     {/* formulario */}
-    <ContactsFormV1 contactos={contactos} setContactos={setContactos}/>
+    {/* <ContactsFormV1 contactos={contactos} setContactos={setContactos}/> */}
+    <ContactsFormV2 contactos={contactos} setContactos={setContactos}/>
     <ContactsTable contactos={contactos} setContactos={setContactos}/>
     {/* tabla */}
     
