@@ -21,6 +21,11 @@ const Header = () => {
             return isActive ? 'nav-link active' : 'nav-link';
           }} to="/contactos">Contactos</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className={({isActive})=>{
+            return isActive ? 'nav-link active' : 'nav-link';
+          }} to="/usuarios">Usuarios</NavLink>
+        </li>
       </ul>
     </div>
   </div>
