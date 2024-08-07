@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import UsersList from "../componets/Users/UsersList";
 import LoadingUsers from "../componets/Users/LoadingUsers";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+console.log(BACKEND_URL)
+
 const UsersViews = () => {
 
     const [users, setUsers] = useState([]);
@@ -9,7 +12,12 @@ const UsersViews = () => {
     const fetchUsers = async () => {
 
         try {
-            const res = await fetch('https://jsonplaceholder.typicode.com/users');
+            const res = await fetch(
+                // 'http://localhost:3000/users'
+                // 'https://jsonplaceholder.typicode.com/users'
+                `${BACKEND_URL}/users`
+                
+            );
             const data = await res.json();
     
             setUsers(data);
