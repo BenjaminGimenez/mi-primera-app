@@ -1,46 +1,33 @@
-import { useEffect, useState } from "react";
+
+import { useQuery } from "@tanstack/react-query";
+import { getUsersFn } from "../../api/users";
 import UsersList from "../componets/Users/UsersList";
 import LoadingUsers from "../componets/Users/LoadingUsers";
+import ErrorUsers from "../componets/Users/ErrorUsers";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-console.log(BACKEND_URL)
+
 
 const UsersViews = () => {
-
-    const [users, setUsers] = useState([]);
-
-    const fetchUsers = async () => {
-
-        try {
-            const res = await fetch(
-                // 'http://localhost:3000/users'
-                // 'https://jsonplaceholder.typicode.com/users'
-                `${BACKEND_URL}/users`
-                
-            );
-            const data = await res.json();
-    
-            setUsers(data);
-            
-        } catch (error) {
-            console.error(error)
-        }
-    };
-
-    useEffect(()=>{
-        fetchUsers();
-    }, [])
-    
+  const {
+    data: users,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: getUsersFn,
+  });
 
   return (
     <div>
-        <h1>Esta es mi lista de usuarios</h1>
-        {/* listado */}
-        
-        {/* renderizado condicional */}
-        {users.length === 0 ? <LoadingUsers/> : <UsersList users={users}/>}
-        
+      <h1>Esta es mi lista de usuarios</h1>
+      {/* listado */}
+
+      {/* renderizado condicional */}
+      {isLoading && <LoadingUsers/>}
+      {isError && <ErrorUsers/>}
+      {isSuccess && <UsersList users={users}/>}
     </div>
-  )
-}
-export default UsersViews
+  );
+};
+export default UsersViews;
