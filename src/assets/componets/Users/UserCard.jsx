@@ -1,21 +1,46 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteUseFn } from '../../../api/users';
+import { toast } from 'sonner';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 
 const UserCard = (props) => {
     const {user} = props;
 
+    const queryClient = useQueryClient();
+
+    const { mutate: deleteUser } = useMutation({
+      mutationFn: deleteUseFn,
+      onError: () => {
+        toast.dismiss();
+        toast.error('Ocurrio un error')
+        
+      },
+
+      //recargamos los usuarios 
+      onSuccess: () => {
+        toast.dismiss();
+        toast.success('Usuario eliminado');
+        queryClient.invalidateQueries({
+          queryKey: ['users'],
+        })
+      },
+
+    });
+
     const handleDelete = async () => {
       const action = await Swal.fire({
         title: 'Atencion',
         icon: 'warning',
         html: `Estas seguro que desea eliminar al usuario <b>${user.name}</b>?`,
-        confirmButtonText: 'Si, cancelar',
+        confirmButtonText: 'Si, eliminar',
         cancelButtonText: 'Cancelar',
         showCancelButton: true,
       })
 
       if(action.isConfirmed){
-        console.log(`elimiar usuario de de id ${user.id}`)
+        toast.loading(`Eliminando a ${user.name}`);
+        deleteUser(user.id)
       }
     }
 
